@@ -1,0 +1,142 @@
+# Logical item keys used by GrowOps.
+# 'itemsadder' = the ItemsAdder id (namespace:id). If ItemsAdder is missing or the id does not exist,
+# the plugin falls back to 'material' with the name and lore below.
+# Change any 'itemsadder' value to point at your own ItemsAdder items.
+items:
+  pot:
+    itemsadder: "growops:pot"
+    material: FLOWER_POT
+    name: "<green>Grow Pot"
+    lore:
+      - "<gray>Place it, then plant a seed."
+  tent:
+    itemsadder: "growops:tent"
+    material: GREEN_STAINED_GLASS
+    name: "<green>Grow Tent"
+    lore:
+      - "<gray>Pots nearby grow in optimal conditions."
+  waterer:
+    itemsadder: "growops:waterer"
+    material: CAULDRON
+    name: "<aqua>Auto-Waterer"
+    lore:
+      - "<gray>Waters pots around it."
+      - "<gray>Fill it with water buckets."
+  processing_table:
+    itemsadder: "growops:processing_table"
+    material: SMITHING_TABLE
+    name: "<gold>Processing Table"
+    lore:
+      - "<gray>Bag, grind and roll."
+  press:
+    itemsadder: "growops:press"
+    material: STONECUTTER
+    name: "<gray>Weed Press"
+    lore:
+      - "<gray>Presses ground weed into bricks."
+  lockup:
+    itemsadder: "growops:lockup"
+    material: BARREL
+    name: "<dark_gray>Secret Lockup"
+    lore:
+      - "<gray>Sneak + right-click to open."
+  watering_can:
+    itemsadder: "growops:watering_can"
+    material: BUCKET
+    name: "<aqua>Watering Can"
+    lore:
+      - "<gray>Right-click water to refill."
+  fertilizer_yield:
+    itemsadder: "growops:fertilizer_yield"
+    material: BONE_MEAL
+    name: "<yellow>Yield Fertilizer"
+    lore:
+      - "<gray>Apply early. More buds."
+  fertilizer_speed:
+    itemsadder: "growops:fertilizer_speed"
+    material: BONE_MEAL
+    name: "<aqua>Speed Fertilizer"
+    lore:
+      - "<gray>Apply early. Faster growth."
+  fertilizer_resist:
+    itemsadder: "growops:fertilizer_resist"
+    material: BONE_MEAL
+    name: "<green>Resist Fertilizer"
+    lore:
+      - "<gray>Apply early. Fewer pests."
+  pesticide:
+    itemsadder: "growops:pesticide"
+    material: POTION
+    name: "<red>Pesticide Spray"
+    lore:
+      - "<gray>Cures an infestation."
+  bud:
+    itemsadder: "growops:bud"
+    material: GREEN_DYE
+    name: "<green>Bud"
+  bag_empty:
+    itemsadder: "growops:bag_empty"
+    material: PAPER
+    name: "<white>Empty Bag"
+  weed_bag:
+    itemsadder: "growops:weed_bag"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+  ground:
+    itemsadder: "growops:ground"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+  rolling_paper:
+    itemsadder: "growops:rolling_paper"
+    material: PAPER
+    name: "<white>Rolling Paper"
+  joint:
+    itemsadder: "growops:joint"
+    material: STICK
+    name: "<green>Joint"
+  brick:
+    itemsadder: "growops:brick"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+  plant_stage_0:
+    itemsadder: "growops:plant_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Seedling"
+  plant_stage_1:
+    itemsadder: "growops:plant_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Sprout"
+  plant_stage_2:
+    itemsadder: "growops:plant_stage_2"
+    material: FERN
+    name: "<green>Young Plant"
+  plant_stage_3:
+    itemsadder: "growops:plant_stage_3"
+    material: LARGE_FERN
+    name: "<green>Growing Plant"
+  plant_stage_4:
+    itemsadder: "growops:plant_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Ready Plant"
+  plant_dead:
+    itemsadder: "growops:plant_dead"
+    material: DEAD_BUSH
+    name: "<dark_gray>Withered Plant"
+  seed_og_kush:
+    itemsadder: "growops:seed_og_kush"
+    material: WHEAT_SEEDS
+    name: "<white>OG Kush Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  seed_white_widow:
+    itemsadder: "growops:seed_white_widow"
+    material: WHEAT_SEEDS
+    name: "<white>White Widow Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  seed_purple_haze:
+    itemsadder: "growops:seed_purple_haze"
+    material: WHEAT_SEEDS
+    name: "<white>Purple Haze Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."

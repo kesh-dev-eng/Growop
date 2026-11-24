@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+group = 'dev.growops'
+version = project.findProperty('pluginVersion')
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+    compileOnly "io.papermc.paper:paper-api:${project.findProperty('paperVersion')}"
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = Integer.parseInt(project.findProperty('javaVersion').toString())
+}
+
+processResources {
+    filesMatching('plugin.yml') {
+        expand(version: project.version)
+    }
+}
+
+jar {
+    archiveFileName = "GrowOps-${project.version}.jar"
+}

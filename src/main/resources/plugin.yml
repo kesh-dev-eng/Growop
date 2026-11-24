@@ -1,0 +1,20 @@
+name: GrowOps
+version: '${version}'
+main: dev.growops.GrowOpsPlugin
+api-version: '26.1'
+description: Plant growing, strains, processing, lockups and grow-ops with ItemsAdder support.
+softdepend: [ItemsAdder, LuckPerms]
+commands:
+  growops:
+    description: GrowOps main command
+    usage: /growops help
+    aliases: [gops]
+permissions:
+  growops.use:
+    default: true
+  growops.place:
+    default: true
+  growops.hud:
+    default: true
+  growops.admin:
+    default: op

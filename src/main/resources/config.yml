@@ -1,0 +1,109 @@
+# GrowOps configuration
+
+save-interval-minutes: 5
+
+growth:
+  tick-seconds: 10
+  # Time that passed while the server was off is applied to plants, capped at this per restart.
+  max-catchup-minutes: 30
+  # Number of visual stages: seed ... ready. Must match plant.scales length.
+  stages: 5
+
+plant:
+  scales: [0.25, 0.4, 0.6, 0.8, 1.0]
+  dehydrate-damage-per-minute: 4
+  regen-per-minute: 2
+
+soil:
+  wet: MUD
+  ok: DIRT
+  dry: COARSE_DIRT
+  wet-above: 60
+  ok-above: 25
+
+pests:
+  chance-per-minute: 0.04
+  damage-per-minute: 4
+  growth-multiplier: 0.5
+
+tent:
+  radius: 6
+  speed-multiplier: 1.25
+  quality-bonus: 8
+  water-multiplier: 0.8
+
+waterer:
+  radius: 4
+  max-tank: 40
+  bucket-fill: 10
+  refill-below: 50
+
+watering-can:
+  capacity: 10
+  water-per-use: 45
+
+# Fertilizers can only be applied while the plant is at or below this growth fraction.
+fertilizer-max-growth: 0.30
+fertilizers:
+  fertilizer_yield:
+    yield: 1.4
+    speed: 1.0
+    pest-chance: 1.0
+    quality-bonus: 3
+  fertilizer_speed:
+    yield: 1.0
+    speed: 1.35
+    pest-chance: 1.0
+    quality-bonus: 0
+  fertilizer_resist:
+    yield: 1.0
+    speed: 1.0
+    pest-chance: 0.25
+    quality-bonus: 2
+
+stations:
+  # Block each station is placed as. Any block material works.
+  POT: { block: FLOWER_POT }
+  TENT: { block: GREEN_STAINED_GLASS }
+  WATERER: { block: CAULDRON }
+  PROCESSING: { block: SMITHING_TABLE }
+  PRESS: { block: STONECUTTER }
+  LOCKUP: { block: BARREL }
+
+placement:
+  # Pots and tents only on blocks with a roof above them.
+  indoor-only: false
+  # Empty list = every world.
+  allowed-worlds: []
+  max-pots-per-player: 50
+  others-can-break: false
+
+lockup:
+  # Secret lockups: only open with sneak + right-click.
+  require-sneak: true
+
+growop:
+  door-open-seconds: 8
+  max-door-blocks: 300
+
+hud:
+  default-enabled: false
+
+# If a player scores below this in a mini-game that can fail, nothing is consumed.
+minigame-fail-threshold: 0.2
+
+minigames:
+  watering:    { rounds: 3, period-ticks: 3, zone: 3 }
+  fertilizing: { rounds: 2, period-ticks: 3, zone: 3 }
+  spraying:    { rounds: 3, period-ticks: 2, zone: 3 }
+  harvesting:  { rounds: 4, period-ticks: 3, zone: 2 }
+  bagging:     { rounds: 3, period-ticks: 3, zone: 3 }
+  grinding:    { rounds: 3, period-ticks: 2, zone: 2 }
+  rolling:     { rounds: 3, period-ticks: 2, zone: 2 }
+  pressing:    { rounds: 3, period-ticks: 3, zone: 3 }
+
+processing:
+  bag:   { buds-per-bag: 5 }
+  grind: { buds: 1, yield: 2 }
+  roll:  { ground: 1 }
+  press: { ground-per-brick: 4 }

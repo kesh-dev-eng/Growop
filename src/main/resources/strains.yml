@@ -1,0 +1,39 @@
+# Each strain automatically gets a seed item "seed_<id>".
+# Optional per strain: stage-items: [five item keys from items.yml] to override the plant models.
+strains:
+  og_kush:
+    name: "OG Kush"
+    color: "4CAF50"
+    grow-minutes: 20
+    water-per-minute: 3
+    yield: { min: 3, max: 6 }
+    seeds: { min: 0, max: 2 }
+    mutation: { chance: 0.08, strain: purple_haze }
+    decay-minutes: 30
+    requires-optimal: false
+    base-quality: 50
+
+  white_widow:
+    name: "White Widow"
+    color: "E0E0E0"
+    grow-minutes: 25
+    water-per-minute: 3.5
+    yield: { min: 3, max: 7 }
+    seeds: { min: 0, max: 2 }
+    mutation: { chance: 0.06, strain: og_kush }
+    decay-minutes: 25
+    requires-optimal: false
+    base-quality: 58
+
+  purple_haze:
+    name: "Purple Haze"
+    color: "9C27B0"
+    grow-minutes: 30
+    water-per-minute: 4
+    yield: { min: 4, max: 8 }
+    seeds: { min: 0, max: 1 }
+    mutation: { chance: 0.05, strain: white_widow }
+    decay-minutes: 20
+    # Needs a grow tent nearby, otherwise it will not grow.
+    requires-optimal: true
+    base-quality: 68

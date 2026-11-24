@@ -1,0 +1,192 @@
+info:
+  namespace: growops
+items:
+  pot:
+    display_name: "Grow Pot"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/pot.png
+  tent:
+    display_name: "Grow Tent"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/tent.png
+  waterer:
+    display_name: "Auto-Waterer"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/waterer.png
+  processing_table:
+    display_name: "Processing Table"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/processing_table.png
+  press:
+    display_name: "Weed Press"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/press.png
+  lockup:
+    display_name: "Secret Lockup"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/lockup.png
+  watering_can:
+    display_name: "Watering Can"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/watering_can.png
+  fertilizer_yield:
+    display_name: "Yield Fertilizer"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/fertilizer_yield.png
+  fertilizer_speed:
+    display_name: "Speed Fertilizer"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/fertilizer_speed.png
+  fertilizer_resist:
+    display_name: "Resist Fertilizer"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/fertilizer_resist.png
+  pesticide:
+    display_name: "Pesticide Spray"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/pesticide.png
+  bud:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud.png
+  bag_empty:
+    display_name: "Empty Bag"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bag_empty.png
+  weed_bag:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag.png
+  ground:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground.png
+  rolling_paper:
+    display_name: "Rolling Paper"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/rolling_paper.png
+  joint:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint.png
+  brick:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick.png
+  plant_stage_0:
+    display_name: "Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_stage_0.png
+  plant_stage_1:
+    display_name: "Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_stage_1.png
+  plant_stage_2:
+    display_name: "Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_stage_2.png
+  plant_stage_3:
+    display_name: "Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_stage_3.png
+  plant_stage_4:
+    display_name: "Ready Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_stage_4.png
+  plant_dead:
+    display_name: "Withered Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_dead.png
+  seed_og_kush:
+    display_name: "OG Kush Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_og_kush.png
+  seed_white_widow:
+    display_name: "White Widow Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_white_widow.png
+  seed_purple_haze:
+    display_name: "Purple Haze Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_purple_haze.png
