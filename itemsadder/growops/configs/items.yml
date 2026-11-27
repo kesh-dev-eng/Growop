@@ -78,13 +78,20 @@ items:
       generate: true
       textures:
         - item/pesticide.png
-  bud:
-    display_name: "Bud"
+  rolling_paper:
+    display_name: "Rolling Paper"
     resource:
       material: PAPER
       generate: true
       textures:
-        - item/bud.png
+        - item/rolling_paper.png
+  lighter:
+    display_name: "Lighter"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/lighter.png
   bag_empty:
     display_name: "Empty Bag"
     resource:
@@ -92,6 +99,20 @@ items:
       generate: true
       textures:
         - item/bag_empty.png
+  plant_dead:
+    display_name: "Withered Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_dead.png
+  bud:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud.png
   weed_bag:
     display_name: "Bagged Weed"
     resource:
@@ -106,13 +127,6 @@ items:
       generate: true
       textures:
         - item/ground.png
-  rolling_paper:
-    display_name: "Rolling Paper"
-    resource:
-      material: PAPER
-      generate: true
-      textures:
-        - item/rolling_paper.png
   joint:
     display_name: "Joint"
     resource:
@@ -156,19 +170,397 @@ items:
       textures:
         - item/plant_stage_3.png
   plant_stage_4:
-    display_name: "Ready Plant"
+    display_name: "Flowering Plant"
     resource:
       material: PAPER
       generate: true
       textures:
         - item/plant_stage_4.png
-  plant_dead:
-    display_name: "Withered Plant"
+  seed_blue_dream:
+    display_name: "Blue Dream Seeds"
     resource:
       material: PAPER
       generate: true
       textures:
-        - item/plant_dead.png
+        - item/seed_blue_dream.png
+  bud_blue_dream:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_blue_dream.png
+  weed_bag_blue_dream:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_blue_dream.png
+  ground_blue_dream:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_blue_dream.png
+  joint_blue_dream:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_blue_dream.png
+  brick_blue_dream:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_blue_dream.png
+  plant_blue_dream_stage_0:
+    display_name: "Blue Dream Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_blue_dream_stage_0.png
+  plant_blue_dream_stage_1:
+    display_name: "Blue Dream Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_blue_dream_stage_1.png
+  plant_blue_dream_stage_2:
+    display_name: "Blue Dream Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_blue_dream_stage_2.png
+  plant_blue_dream_stage_3:
+    display_name: "Blue Dream Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_blue_dream_stage_3.png
+  plant_blue_dream_stage_4:
+    display_name: "Blue Dream Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_blue_dream_stage_4.png
+  seed_bubba_kush:
+    display_name: "Bubba Kush Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_bubba_kush.png
+  bud_bubba_kush:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_bubba_kush.png
+  weed_bag_bubba_kush:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_bubba_kush.png
+  ground_bubba_kush:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_bubba_kush.png
+  joint_bubba_kush:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_bubba_kush.png
+  brick_bubba_kush:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_bubba_kush.png
+  plant_bubba_kush_stage_0:
+    display_name: "Bubba Kush Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_bubba_kush_stage_0.png
+  plant_bubba_kush_stage_1:
+    display_name: "Bubba Kush Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_bubba_kush_stage_1.png
+  plant_bubba_kush_stage_2:
+    display_name: "Bubba Kush Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_bubba_kush_stage_2.png
+  plant_bubba_kush_stage_3:
+    display_name: "Bubba Kush Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_bubba_kush_stage_3.png
+  plant_bubba_kush_stage_4:
+    display_name: "Bubba Kush Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_bubba_kush_stage_4.png
+  seed_super_lemon_haze:
+    display_name: "Super Lemon Haze Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_super_lemon_haze.png
+  bud_super_lemon_haze:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_super_lemon_haze.png
+  weed_bag_super_lemon_haze:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_super_lemon_haze.png
+  ground_super_lemon_haze:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_super_lemon_haze.png
+  joint_super_lemon_haze:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_super_lemon_haze.png
+  brick_super_lemon_haze:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_super_lemon_haze.png
+  plant_super_lemon_haze_stage_0:
+    display_name: "Super Lemon Haze Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_super_lemon_haze_stage_0.png
+  plant_super_lemon_haze_stage_1:
+    display_name: "Super Lemon Haze Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_super_lemon_haze_stage_1.png
+  plant_super_lemon_haze_stage_2:
+    display_name: "Super Lemon Haze Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_super_lemon_haze_stage_2.png
+  plant_super_lemon_haze_stage_3:
+    display_name: "Super Lemon Haze Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_super_lemon_haze_stage_3.png
+  plant_super_lemon_haze_stage_4:
+    display_name: "Super Lemon Haze Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_super_lemon_haze_stage_4.png
+  seed_azure_haze:
+    display_name: "Azure Haze Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_azure_haze.png
+  bud_azure_haze:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_azure_haze.png
+  weed_bag_azure_haze:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_azure_haze.png
+  ground_azure_haze:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_azure_haze.png
+  joint_azure_haze:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_azure_haze.png
+  brick_azure_haze:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_azure_haze.png
+  plant_azure_haze_stage_0:
+    display_name: "Azure Haze Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_azure_haze_stage_0.png
+  plant_azure_haze_stage_1:
+    display_name: "Azure Haze Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_azure_haze_stage_1.png
+  plant_azure_haze_stage_2:
+    display_name: "Azure Haze Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_azure_haze_stage_2.png
+  plant_azure_haze_stage_3:
+    display_name: "Azure Haze Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_azure_haze_stage_3.png
+  plant_azure_haze_stage_4:
+    display_name: "Azure Haze Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_azure_haze_stage_4.png
+  seed_whitethorn_rose:
+    display_name: "Whitethorn Rose Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_whitethorn_rose.png
+  bud_whitethorn_rose:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_whitethorn_rose.png
+  weed_bag_whitethorn_rose:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_whitethorn_rose.png
+  ground_whitethorn_rose:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_whitethorn_rose.png
+  joint_whitethorn_rose:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_whitethorn_rose.png
+  brick_whitethorn_rose:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_whitethorn_rose.png
+  plant_whitethorn_rose_stage_0:
+    display_name: "Whitethorn Rose Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_whitethorn_rose_stage_0.png
+  plant_whitethorn_rose_stage_1:
+    display_name: "Whitethorn Rose Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_whitethorn_rose_stage_1.png
+  plant_whitethorn_rose_stage_2:
+    display_name: "Whitethorn Rose Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_whitethorn_rose_stage_2.png
+  plant_whitethorn_rose_stage_3:
+    display_name: "Whitethorn Rose Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_whitethorn_rose_stage_3.png
+  plant_whitethorn_rose_stage_4:
+    display_name: "Whitethorn Rose Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_whitethorn_rose_stage_4.png
   seed_og_kush:
     display_name: "OG Kush Seeds"
     resource:
@@ -176,13 +568,153 @@ items:
       generate: true
       textures:
         - item/seed_og_kush.png
-  seed_white_widow:
-    display_name: "White Widow Seeds"
+  bud_og_kush:
+    display_name: "Bud"
     resource:
       material: PAPER
       generate: true
       textures:
-        - item/seed_white_widow.png
+        - item/bud_og_kush.png
+  weed_bag_og_kush:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_og_kush.png
+  ground_og_kush:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_og_kush.png
+  joint_og_kush:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_og_kush.png
+  brick_og_kush:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_og_kush.png
+  plant_og_kush_stage_0:
+    display_name: "OG Kush Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_og_kush_stage_0.png
+  plant_og_kush_stage_1:
+    display_name: "OG Kush Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_og_kush_stage_1.png
+  plant_og_kush_stage_2:
+    display_name: "OG Kush Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_og_kush_stage_2.png
+  plant_og_kush_stage_3:
+    display_name: "OG Kush Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_og_kush_stage_3.png
+  plant_og_kush_stage_4:
+    display_name: "OG Kush Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_og_kush_stage_4.png
+  seed_panama_red:
+    display_name: "Panama Red Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_panama_red.png
+  bud_panama_red:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_panama_red.png
+  weed_bag_panama_red:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_panama_red.png
+  ground_panama_red:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_panama_red.png
+  joint_panama_red:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_panama_red.png
+  brick_panama_red:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_panama_red.png
+  plant_panama_red_stage_0:
+    display_name: "Panama Red Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_panama_red_stage_0.png
+  plant_panama_red_stage_1:
+    display_name: "Panama Red Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_panama_red_stage_1.png
+  plant_panama_red_stage_2:
+    display_name: "Panama Red Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_panama_red_stage_2.png
+  plant_panama_red_stage_3:
+    display_name: "Panama Red Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_panama_red_stage_3.png
+  plant_panama_red_stage_4:
+    display_name: "Panama Red Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_panama_red_stage_4.png
   seed_purple_haze:
     display_name: "Purple Haze Seeds"
     resource:
@@ -190,3 +722,227 @@ items:
       generate: true
       textures:
         - item/seed_purple_haze.png
+  bud_purple_haze:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_purple_haze.png
+  weed_bag_purple_haze:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_purple_haze.png
+  ground_purple_haze:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_purple_haze.png
+  joint_purple_haze:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_purple_haze.png
+  brick_purple_haze:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_purple_haze.png
+  plant_purple_haze_stage_0:
+    display_name: "Purple Haze Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_purple_haze_stage_0.png
+  plant_purple_haze_stage_1:
+    display_name: "Purple Haze Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_purple_haze_stage_1.png
+  plant_purple_haze_stage_2:
+    display_name: "Purple Haze Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_purple_haze_stage_2.png
+  plant_purple_haze_stage_3:
+    display_name: "Purple Haze Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_purple_haze_stage_3.png
+  plant_purple_haze_stage_4:
+    display_name: "Purple Haze Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_purple_haze_stage_4.png
+  seed_ghost_train_haze:
+    display_name: "Ghost Train Haze Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_ghost_train_haze.png
+  bud_ghost_train_haze:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_ghost_train_haze.png
+  weed_bag_ghost_train_haze:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_ghost_train_haze.png
+  ground_ghost_train_haze:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_ghost_train_haze.png
+  joint_ghost_train_haze:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_ghost_train_haze.png
+  brick_ghost_train_haze:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_ghost_train_haze.png
+  plant_ghost_train_haze_stage_0:
+    display_name: "Ghost Train Haze Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_ghost_train_haze_stage_0.png
+  plant_ghost_train_haze_stage_1:
+    display_name: "Ghost Train Haze Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_ghost_train_haze_stage_1.png
+  plant_ghost_train_haze_stage_2:
+    display_name: "Ghost Train Haze Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_ghost_train_haze_stage_2.png
+  plant_ghost_train_haze_stage_3:
+    display_name: "Ghost Train Haze Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_ghost_train_haze_stage_3.png
+  plant_ghost_train_haze_stage_4:
+    display_name: "Ghost Train Haze Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_ghost_train_haze_stage_4.png
+  seed_pineapple_express:
+    display_name: "Pineapple Express Seeds"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/seed_pineapple_express.png
+  bud_pineapple_express:
+    display_name: "Bud"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/bud_pineapple_express.png
+  weed_bag_pineapple_express:
+    display_name: "Bagged Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/weed_bag_pineapple_express.png
+  ground_pineapple_express:
+    display_name: "Ground Weed"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/ground_pineapple_express.png
+  joint_pineapple_express:
+    display_name: "Joint"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_pineapple_express.png
+  brick_pineapple_express:
+    display_name: "Weed Brick"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/brick_pineapple_express.png
+  plant_pineapple_express_stage_0:
+    display_name: "Pineapple Express Seedling"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_pineapple_express_stage_0.png
+  plant_pineapple_express_stage_1:
+    display_name: "Pineapple Express Sprout"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_pineapple_express_stage_1.png
+  plant_pineapple_express_stage_2:
+    display_name: "Pineapple Express Young Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_pineapple_express_stage_2.png
+  plant_pineapple_express_stage_3:
+    display_name: "Pineapple Express Growing Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_pineapple_express_stage_3.png
+  plant_pineapple_express_stage_4:
+    display_name: "Pineapple Express Flowering Plant"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/plant_pineapple_express_stage_4.png

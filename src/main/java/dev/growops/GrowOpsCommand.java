@@ -78,7 +78,7 @@ public final class GrowOpsCommand implements CommandExecutor, TabCompleter {
         if (!s.hasPermission("growops.admin")) {
             return;
         }
-        msg(s, "<white>/growops give <item> [amount] [player]");
+        msg(s, "<white>/growops give <item> [amount] [player] [strain] <gray>- strain only for bud, weed_bag, ground, joint, brick");
         msg(s, "<white>/growops items | strains | reload | save");
         msg(s, "<white>/growops fixed <pot|tent|waterer|processing|press|lockup> <gray>- place a permanent station where you look (above the block)");
         msg(s, "<white>/growops lockup <add|remove> <player> <gray>- lockup you look at");
@@ -112,7 +112,12 @@ public final class GrowOpsCommand implements CommandExecutor, TabCompleter {
         }
         ItemStack it;
         if (List.of("bud", "weed_bag", "ground", "joint", "brick").contains(key)) {
-            String strain = plugin.strains().all().stream().findFirst().map(Strain::id).orElse("unknown");
+            String strain = a.length >= 5 ? a[4].toLowerCase(Locale.ROOT)
+                    : plugin.strains().all().stream().findFirst().map(Strain::id).orElse("unknown");
+            if (plugin.strains().get(strain) == null) {
+                msg(s, "<red>Unknown strain. Use /growops strains.");
+                return;
+            }
             it = plugin.items().product(key, amount, strain, 70);
         } else {
             it = plugin.items().create(key, amount);
@@ -268,6 +273,8 @@ public final class GrowOpsCommand implements CommandExecutor, TabCompleter {
                 plugin.ops().all().forEach(o -> out.add(o.id));
             } else if (a.length == 4 && a[0].equalsIgnoreCase("give")) {
                 Bukkit.getOnlinePlayers().forEach(p -> out.add(p.getName()));
+            } else if (a.length == 5 && a[0].equalsIgnoreCase("give")) {
+                plugin.strains().all().forEach(st -> out.add(st.id()));
             }
         }
         String last = a[a.length - 1].toLowerCase(Locale.ROOT);

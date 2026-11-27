@@ -1,39 +1,135 @@
-# Each strain automatically gets a seed item "seed_<id>".
-# Optional per strain: stage-items: [five item keys from items.yml] to override the plant models.
+# Each strain automatically gets a seed item "seed_<id>" and per-strain bud/bag/ground/joint/brick/plant models.
+# effects: potion effects given when a joint of this strain is smoked. Format NAME or NAME:level.
+#   Duration = joint.duration-seconds x quality (see config.yml). Optional third part caps seconds: NAME:level:maxSeconds
+# stage-items: the 5 plant models (seed ... flowering). Remove the line to use the generic plant models.
 strains:
+  blue_dream:
+    name: "Blue Dream"
+    color: "4F86F7"
+    grow-minutes: 25
+    water-per-minute: 3.5
+    yield: { min: 4, max: 7 }
+    seeds: { min: 0, max: 2 }
+    mutation: { chance: 0.06, strain: azure_haze }
+    decay-minutes: 28
+    requires-optimal: false
+    base-quality: 62
+    effects: ["NIGHT_VISION", "SLOW_FALLING", "REGENERATION"]
+    stage-items: [plant_blue_dream_stage_0, plant_blue_dream_stage_1, plant_blue_dream_stage_2, plant_blue_dream_stage_3, plant_blue_dream_stage_4]
+  bubba_kush:
+    name: "Bubba Kush"
+    color: "6A3F8C"
+    grow-minutes: 28
+    water-per-minute: 3.0
+    yield: { min: 5, max: 8 }
+    seeds: { min: 0, max: 1 }
+    mutation: { chance: 0.05, strain: og_kush }
+    decay-minutes: 30
+    requires-optimal: false
+    base-quality: 64
+    effects: ["RESISTANCE", "SLOWNESS", "SATURATION"]
+    stage-items: [plant_bubba_kush_stage_0, plant_bubba_kush_stage_1, plant_bubba_kush_stage_2, plant_bubba_kush_stage_3, plant_bubba_kush_stage_4]
+  super_lemon_haze:
+    name: "Super Lemon Haze"
+    color: "D4E157"
+    grow-minutes: 22
+    water-per-minute: 3.0
+    yield: { min: 3, max: 6 }
+    seeds: { min: 0, max: 2 }
+    mutation: { chance: 0.07, strain: pineapple_express }
+    decay-minutes: 24
+    requires-optimal: false
+    base-quality: 60
+    effects: ["SPEED", "HASTE", "JUMP_BOOST"]
+    stage-items: [plant_super_lemon_haze_stage_0, plant_super_lemon_haze_stage_1, plant_super_lemon_haze_stage_2, plant_super_lemon_haze_stage_3, plant_super_lemon_haze_stage_4]
+  azure_haze:
+    name: "Azure Haze"
+    color: "26C6DA"
+    grow-minutes: 30
+    water-per-minute: 4.0
+    yield: { min: 3, max: 6 }
+    seeds: { min: 0, max: 1 }
+    mutation: { chance: 0.05, strain: blue_dream }
+    decay-minutes: 22
+    requires-optimal: true
+    base-quality: 70
+    effects: ["WATER_BREATHING", "DOLPHINS_GRACE", "NIGHT_VISION"]
+    stage-items: [plant_azure_haze_stage_0, plant_azure_haze_stage_1, plant_azure_haze_stage_2, plant_azure_haze_stage_3, plant_azure_haze_stage_4]
+  whitethorn_rose:
+    name: "Whitethorn Rose"
+    color: "F06292"
+    grow-minutes: 32
+    water-per-minute: 3.5
+    yield: { min: 3, max: 5 }
+    seeds: { min: 0, max: 1 }
+    mutation: { chance: 0.04, strain: purple_haze }
+    decay-minutes: 22
+    requires-optimal: true
+    base-quality: 74
+    effects: ["REGENERATION", "ABSORPTION", "HEALTH_BOOST"]
+    stage-items: [plant_whitethorn_rose_stage_0, plant_whitethorn_rose_stage_1, plant_whitethorn_rose_stage_2, plant_whitethorn_rose_stage_3, plant_whitethorn_rose_stage_4]
   og_kush:
     name: "OG Kush"
     color: "4CAF50"
     grow-minutes: 20
-    water-per-minute: 3
+    water-per-minute: 3.0
     yield: { min: 3, max: 6 }
     seeds: { min: 0, max: 2 }
-    mutation: { chance: 0.08, strain: purple_haze }
+    mutation: { chance: 0.08, strain: bubba_kush }
     decay-minutes: 30
     requires-optimal: false
-    base-quality: 50
-
-  white_widow:
-    name: "White Widow"
-    color: "E0E0E0"
-    grow-minutes: 25
-    water-per-minute: 3.5
-    yield: { min: 3, max: 7 }
+    base-quality: 55
+    effects: ["STRENGTH", "RESISTANCE", "HUNGER"]
+    stage-items: [plant_og_kush_stage_0, plant_og_kush_stage_1, plant_og_kush_stage_2, plant_og_kush_stage_3, plant_og_kush_stage_4]
+  panama_red:
+    name: "Panama Red"
+    color: "D84315"
+    grow-minutes: 26
+    water-per-minute: 3.2
+    yield: { min: 4, max: 7 }
     seeds: { min: 0, max: 2 }
-    mutation: { chance: 0.06, strain: og_kush }
-    decay-minutes: 25
+    mutation: { chance: 0.06, strain: super_lemon_haze }
+    decay-minutes: 26
     requires-optimal: false
     base-quality: 58
-
+    effects: ["FIRE_RESISTANCE", "STRENGTH", "SPEED"]
+    stage-items: [plant_panama_red_stage_0, plant_panama_red_stage_1, plant_panama_red_stage_2, plant_panama_red_stage_3, plant_panama_red_stage_4]
   purple_haze:
     name: "Purple Haze"
     color: "9C27B0"
     grow-minutes: 30
-    water-per-minute: 4
+    water-per-minute: 4.0
     yield: { min: 4, max: 8 }
     seeds: { min: 0, max: 1 }
-    mutation: { chance: 0.05, strain: white_widow }
+    mutation: { chance: 0.05, strain: whitethorn_rose }
     decay-minutes: 20
-    # Needs a grow tent nearby, otherwise it will not grow.
     requires-optimal: true
     base-quality: 68
+    effects: ["LEVITATION", "NIGHT_VISION", "NAUSEA"]
+    stage-items: [plant_purple_haze_stage_0, plant_purple_haze_stage_1, plant_purple_haze_stage_2, plant_purple_haze_stage_3, plant_purple_haze_stage_4]
+  ghost_train_haze:
+    name: "Ghost Train Haze"
+    color: "CFD8DC"
+    grow-minutes: 35
+    water-per-minute: 4.5
+    yield: { min: 3, max: 6 }
+    seeds: { min: 0, max: 1 }
+    mutation: { chance: 0.03, strain: purple_haze }
+    decay-minutes: 18
+    requires-optimal: true
+    base-quality: 80
+    effects: ["INVISIBILITY", "SPEED:2", "NIGHT_VISION"]
+    stage-items: [plant_ghost_train_haze_stage_0, plant_ghost_train_haze_stage_1, plant_ghost_train_haze_stage_2, plant_ghost_train_haze_stage_3, plant_ghost_train_haze_stage_4]
+  pineapple_express:
+    name: "Pineapple Express"
+    color: "FFB300"
+    grow-minutes: 27
+    water-per-minute: 3.5
+    yield: { min: 4, max: 7 }
+    seeds: { min: 0, max: 2 }
+    mutation: { chance: 0.06, strain: panama_red }
+    decay-minutes: 26
+    requires-optimal: false
+    base-quality: 63
+    effects: ["LUCK", "HASTE", "JUMP_BOOST"]
+    stage-items: [plant_pineapple_express_stage_0, plant_pineapple_express_stage_1, plant_pineapple_express_stage_2, plant_pineapple_express_stage_3, plant_pineapple_express_stage_4]

@@ -53,7 +53,8 @@ public final class StrainRegistry {
                     Math.max(1, s.getInt("decay-minutes", 30)),
                     s.getBoolean("requires-optimal", false),
                     s.getInt("base-quality", 50),
-                    stageItems));
+                    stageItems,
+                    new ArrayList<>(s.getStringList("effects"))));
         }
         plugin.getLogger().info("Loaded " + map.size() + " strains.");
     }

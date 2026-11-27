@@ -19,5 +19,6 @@ public record Strain(
         int decayMinutes,
         boolean requiresOptimal,
         int baseQuality,
-        List<String> stageItems) {
+        List<String> stageItems,
+        List<String> effects) {
 }

@@ -86,6 +86,20 @@ growop:
   door-open-seconds: 8
   max-door-blocks: 300
 
+joint:
+  require-lighter: true      # a Lighter item (or vanilla flint and steel) in the inventory
+  duration-seconds: 60       # base effect length, scaled by quality (50% at q1, 150% at q100)
+  puffs: 5                   # how long the smoking animation lasts (about 0.6 s per puff)
+  cooldown-seconds: 20
+  levitation-safety: true    # adds Slow Falling after Levitation so nobody falls to their death
+  levitation-safety-seconds: 20
+  # Optional hard caps per effect (seconds)
+  max-seconds:
+    LEVITATION: 6
+    SATURATION: 3
+    NAUSEA: 20
+    HEALTH_BOOST: 120
+
 hud:
   default-enabled: false
 

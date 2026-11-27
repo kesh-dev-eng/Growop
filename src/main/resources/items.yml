@@ -1,7 +1,8 @@
 # Logical item keys used by GrowOps.
 # 'itemsadder' = the ItemsAdder id (namespace:id). If ItemsAdder is missing or the id does not exist,
 # the plugin falls back to 'material' with the name and lore below.
-# Change any 'itemsadder' value to point at your own ItemsAdder items.
+# 'base' marks a visual variant (per-strain model) of another item. Change any 'itemsadder' value
+# to point at your own ItemsAdder items.
 items:
   pot:
     itemsadder: "growops:pot"
@@ -70,14 +71,28 @@ items:
     name: "<red>Pesticide Spray"
     lore:
       - "<gray>Cures an infestation."
-  bud:
-    itemsadder: "growops:bud"
-    material: GREEN_DYE
-    name: "<green>Bud"
+  rolling_paper:
+    itemsadder: "growops:rolling_paper"
+    material: PAPER
+    name: "<white>Rolling Paper"
+  lighter:
+    itemsadder: "growops:lighter"
+    material: FLINT
+    name: "<red>Lighter"
+    lore:
+      - "<gray>Needed to light a joint."
   bag_empty:
     itemsadder: "growops:bag_empty"
     material: PAPER
     name: "<white>Empty Bag"
+  plant_dead:
+    itemsadder: "growops:plant_dead"
+    material: DEAD_BUSH
+    name: "<dark_gray>Withered Plant"
+  bud:
+    itemsadder: "growops:bud"
+    material: GREEN_DYE
+    name: "<green>Bud"
   weed_bag:
     itemsadder: "growops:weed_bag"
     material: SUGAR
@@ -86,10 +101,6 @@ items:
     itemsadder: "growops:ground"
     material: LIME_DYE
     name: "<dark_green>Ground Weed"
-  rolling_paper:
-    itemsadder: "growops:rolling_paper"
-    material: PAPER
-    name: "<white>Rolling Paper"
   joint:
     itemsadder: "growops:joint"
     material: STICK
@@ -117,26 +128,564 @@ items:
   plant_stage_4:
     itemsadder: "growops:plant_stage_4"
     material: SWEET_BERRY_BUSH
-    name: "<green>Ready Plant"
-  plant_dead:
-    itemsadder: "growops:plant_dead"
-    material: DEAD_BUSH
-    name: "<dark_gray>Withered Plant"
+    name: "<green>Flowering Plant"
+  seed_blue_dream:
+    itemsadder: "growops:seed_blue_dream"
+    material: WHEAT_SEEDS
+    name: "<white>Blue Dream Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  bud_blue_dream:
+    itemsadder: "growops:bud_blue_dream"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_blue_dream:
+    itemsadder: "growops:weed_bag_blue_dream"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_blue_dream:
+    itemsadder: "growops:ground_blue_dream"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_blue_dream:
+    itemsadder: "growops:joint_blue_dream"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_blue_dream:
+    itemsadder: "growops:brick_blue_dream"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_blue_dream_stage_0:
+    itemsadder: "growops:plant_blue_dream_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Blue Dream Seedling"
+    base: plant_stage_0
+  plant_blue_dream_stage_1:
+    itemsadder: "growops:plant_blue_dream_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Blue Dream Sprout"
+    base: plant_stage_1
+  plant_blue_dream_stage_2:
+    itemsadder: "growops:plant_blue_dream_stage_2"
+    material: FERN
+    name: "<green>Blue Dream Young Plant"
+    base: plant_stage_2
+  plant_blue_dream_stage_3:
+    itemsadder: "growops:plant_blue_dream_stage_3"
+    material: LARGE_FERN
+    name: "<green>Blue Dream Growing Plant"
+    base: plant_stage_3
+  plant_blue_dream_stage_4:
+    itemsadder: "growops:plant_blue_dream_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Blue Dream Flowering Plant"
+    base: plant_stage_4
+  seed_bubba_kush:
+    itemsadder: "growops:seed_bubba_kush"
+    material: WHEAT_SEEDS
+    name: "<white>Bubba Kush Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  bud_bubba_kush:
+    itemsadder: "growops:bud_bubba_kush"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_bubba_kush:
+    itemsadder: "growops:weed_bag_bubba_kush"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_bubba_kush:
+    itemsadder: "growops:ground_bubba_kush"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_bubba_kush:
+    itemsadder: "growops:joint_bubba_kush"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_bubba_kush:
+    itemsadder: "growops:brick_bubba_kush"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_bubba_kush_stage_0:
+    itemsadder: "growops:plant_bubba_kush_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Bubba Kush Seedling"
+    base: plant_stage_0
+  plant_bubba_kush_stage_1:
+    itemsadder: "growops:plant_bubba_kush_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Bubba Kush Sprout"
+    base: plant_stage_1
+  plant_bubba_kush_stage_2:
+    itemsadder: "growops:plant_bubba_kush_stage_2"
+    material: FERN
+    name: "<green>Bubba Kush Young Plant"
+    base: plant_stage_2
+  plant_bubba_kush_stage_3:
+    itemsadder: "growops:plant_bubba_kush_stage_3"
+    material: LARGE_FERN
+    name: "<green>Bubba Kush Growing Plant"
+    base: plant_stage_3
+  plant_bubba_kush_stage_4:
+    itemsadder: "growops:plant_bubba_kush_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Bubba Kush Flowering Plant"
+    base: plant_stage_4
+  seed_super_lemon_haze:
+    itemsadder: "growops:seed_super_lemon_haze"
+    material: WHEAT_SEEDS
+    name: "<white>Super Lemon Haze Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  bud_super_lemon_haze:
+    itemsadder: "growops:bud_super_lemon_haze"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_super_lemon_haze:
+    itemsadder: "growops:weed_bag_super_lemon_haze"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_super_lemon_haze:
+    itemsadder: "growops:ground_super_lemon_haze"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_super_lemon_haze:
+    itemsadder: "growops:joint_super_lemon_haze"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_super_lemon_haze:
+    itemsadder: "growops:brick_super_lemon_haze"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_super_lemon_haze_stage_0:
+    itemsadder: "growops:plant_super_lemon_haze_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Super Lemon Haze Seedling"
+    base: plant_stage_0
+  plant_super_lemon_haze_stage_1:
+    itemsadder: "growops:plant_super_lemon_haze_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Super Lemon Haze Sprout"
+    base: plant_stage_1
+  plant_super_lemon_haze_stage_2:
+    itemsadder: "growops:plant_super_lemon_haze_stage_2"
+    material: FERN
+    name: "<green>Super Lemon Haze Young Plant"
+    base: plant_stage_2
+  plant_super_lemon_haze_stage_3:
+    itemsadder: "growops:plant_super_lemon_haze_stage_3"
+    material: LARGE_FERN
+    name: "<green>Super Lemon Haze Growing Plant"
+    base: plant_stage_3
+  plant_super_lemon_haze_stage_4:
+    itemsadder: "growops:plant_super_lemon_haze_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Super Lemon Haze Flowering Plant"
+    base: plant_stage_4
+  seed_azure_haze:
+    itemsadder: "growops:seed_azure_haze"
+    material: WHEAT_SEEDS
+    name: "<white>Azure Haze Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  bud_azure_haze:
+    itemsadder: "growops:bud_azure_haze"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_azure_haze:
+    itemsadder: "growops:weed_bag_azure_haze"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_azure_haze:
+    itemsadder: "growops:ground_azure_haze"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_azure_haze:
+    itemsadder: "growops:joint_azure_haze"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_azure_haze:
+    itemsadder: "growops:brick_azure_haze"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_azure_haze_stage_0:
+    itemsadder: "growops:plant_azure_haze_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Azure Haze Seedling"
+    base: plant_stage_0
+  plant_azure_haze_stage_1:
+    itemsadder: "growops:plant_azure_haze_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Azure Haze Sprout"
+    base: plant_stage_1
+  plant_azure_haze_stage_2:
+    itemsadder: "growops:plant_azure_haze_stage_2"
+    material: FERN
+    name: "<green>Azure Haze Young Plant"
+    base: plant_stage_2
+  plant_azure_haze_stage_3:
+    itemsadder: "growops:plant_azure_haze_stage_3"
+    material: LARGE_FERN
+    name: "<green>Azure Haze Growing Plant"
+    base: plant_stage_3
+  plant_azure_haze_stage_4:
+    itemsadder: "growops:plant_azure_haze_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Azure Haze Flowering Plant"
+    base: plant_stage_4
+  seed_whitethorn_rose:
+    itemsadder: "growops:seed_whitethorn_rose"
+    material: WHEAT_SEEDS
+    name: "<white>Whitethorn Rose Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  bud_whitethorn_rose:
+    itemsadder: "growops:bud_whitethorn_rose"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_whitethorn_rose:
+    itemsadder: "growops:weed_bag_whitethorn_rose"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_whitethorn_rose:
+    itemsadder: "growops:ground_whitethorn_rose"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_whitethorn_rose:
+    itemsadder: "growops:joint_whitethorn_rose"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_whitethorn_rose:
+    itemsadder: "growops:brick_whitethorn_rose"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_whitethorn_rose_stage_0:
+    itemsadder: "growops:plant_whitethorn_rose_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Whitethorn Rose Seedling"
+    base: plant_stage_0
+  plant_whitethorn_rose_stage_1:
+    itemsadder: "growops:plant_whitethorn_rose_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Whitethorn Rose Sprout"
+    base: plant_stage_1
+  plant_whitethorn_rose_stage_2:
+    itemsadder: "growops:plant_whitethorn_rose_stage_2"
+    material: FERN
+    name: "<green>Whitethorn Rose Young Plant"
+    base: plant_stage_2
+  plant_whitethorn_rose_stage_3:
+    itemsadder: "growops:plant_whitethorn_rose_stage_3"
+    material: LARGE_FERN
+    name: "<green>Whitethorn Rose Growing Plant"
+    base: plant_stage_3
+  plant_whitethorn_rose_stage_4:
+    itemsadder: "growops:plant_whitethorn_rose_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Whitethorn Rose Flowering Plant"
+    base: plant_stage_4
   seed_og_kush:
     itemsadder: "growops:seed_og_kush"
     material: WHEAT_SEEDS
     name: "<white>OG Kush Seeds"
     lore:
       - "<gray>Plant in a grow pot."
-  seed_white_widow:
-    itemsadder: "growops:seed_white_widow"
+  bud_og_kush:
+    itemsadder: "growops:bud_og_kush"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_og_kush:
+    itemsadder: "growops:weed_bag_og_kush"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_og_kush:
+    itemsadder: "growops:ground_og_kush"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_og_kush:
+    itemsadder: "growops:joint_og_kush"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_og_kush:
+    itemsadder: "growops:brick_og_kush"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_og_kush_stage_0:
+    itemsadder: "growops:plant_og_kush_stage_0"
     material: WHEAT_SEEDS
-    name: "<white>White Widow Seeds"
+    name: "<green>OG Kush Seedling"
+    base: plant_stage_0
+  plant_og_kush_stage_1:
+    itemsadder: "growops:plant_og_kush_stage_1"
+    material: SHORT_GRASS
+    name: "<green>OG Kush Sprout"
+    base: plant_stage_1
+  plant_og_kush_stage_2:
+    itemsadder: "growops:plant_og_kush_stage_2"
+    material: FERN
+    name: "<green>OG Kush Young Plant"
+    base: plant_stage_2
+  plant_og_kush_stage_3:
+    itemsadder: "growops:plant_og_kush_stage_3"
+    material: LARGE_FERN
+    name: "<green>OG Kush Growing Plant"
+    base: plant_stage_3
+  plant_og_kush_stage_4:
+    itemsadder: "growops:plant_og_kush_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>OG Kush Flowering Plant"
+    base: plant_stage_4
+  seed_panama_red:
+    itemsadder: "growops:seed_panama_red"
+    material: WHEAT_SEEDS
+    name: "<white>Panama Red Seeds"
     lore:
       - "<gray>Plant in a grow pot."
+  bud_panama_red:
+    itemsadder: "growops:bud_panama_red"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_panama_red:
+    itemsadder: "growops:weed_bag_panama_red"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_panama_red:
+    itemsadder: "growops:ground_panama_red"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_panama_red:
+    itemsadder: "growops:joint_panama_red"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_panama_red:
+    itemsadder: "growops:brick_panama_red"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_panama_red_stage_0:
+    itemsadder: "growops:plant_panama_red_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Panama Red Seedling"
+    base: plant_stage_0
+  plant_panama_red_stage_1:
+    itemsadder: "growops:plant_panama_red_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Panama Red Sprout"
+    base: plant_stage_1
+  plant_panama_red_stage_2:
+    itemsadder: "growops:plant_panama_red_stage_2"
+    material: FERN
+    name: "<green>Panama Red Young Plant"
+    base: plant_stage_2
+  plant_panama_red_stage_3:
+    itemsadder: "growops:plant_panama_red_stage_3"
+    material: LARGE_FERN
+    name: "<green>Panama Red Growing Plant"
+    base: plant_stage_3
+  plant_panama_red_stage_4:
+    itemsadder: "growops:plant_panama_red_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Panama Red Flowering Plant"
+    base: plant_stage_4
   seed_purple_haze:
     itemsadder: "growops:seed_purple_haze"
     material: WHEAT_SEEDS
     name: "<white>Purple Haze Seeds"
     lore:
       - "<gray>Plant in a grow pot."
+  bud_purple_haze:
+    itemsadder: "growops:bud_purple_haze"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_purple_haze:
+    itemsadder: "growops:weed_bag_purple_haze"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_purple_haze:
+    itemsadder: "growops:ground_purple_haze"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_purple_haze:
+    itemsadder: "growops:joint_purple_haze"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_purple_haze:
+    itemsadder: "growops:brick_purple_haze"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_purple_haze_stage_0:
+    itemsadder: "growops:plant_purple_haze_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Purple Haze Seedling"
+    base: plant_stage_0
+  plant_purple_haze_stage_1:
+    itemsadder: "growops:plant_purple_haze_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Purple Haze Sprout"
+    base: plant_stage_1
+  plant_purple_haze_stage_2:
+    itemsadder: "growops:plant_purple_haze_stage_2"
+    material: FERN
+    name: "<green>Purple Haze Young Plant"
+    base: plant_stage_2
+  plant_purple_haze_stage_3:
+    itemsadder: "growops:plant_purple_haze_stage_3"
+    material: LARGE_FERN
+    name: "<green>Purple Haze Growing Plant"
+    base: plant_stage_3
+  plant_purple_haze_stage_4:
+    itemsadder: "growops:plant_purple_haze_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Purple Haze Flowering Plant"
+    base: plant_stage_4
+  seed_ghost_train_haze:
+    itemsadder: "growops:seed_ghost_train_haze"
+    material: WHEAT_SEEDS
+    name: "<white>Ghost Train Haze Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  bud_ghost_train_haze:
+    itemsadder: "growops:bud_ghost_train_haze"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_ghost_train_haze:
+    itemsadder: "growops:weed_bag_ghost_train_haze"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_ghost_train_haze:
+    itemsadder: "growops:ground_ghost_train_haze"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_ghost_train_haze:
+    itemsadder: "growops:joint_ghost_train_haze"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_ghost_train_haze:
+    itemsadder: "growops:brick_ghost_train_haze"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_ghost_train_haze_stage_0:
+    itemsadder: "growops:plant_ghost_train_haze_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Ghost Train Haze Seedling"
+    base: plant_stage_0
+  plant_ghost_train_haze_stage_1:
+    itemsadder: "growops:plant_ghost_train_haze_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Ghost Train Haze Sprout"
+    base: plant_stage_1
+  plant_ghost_train_haze_stage_2:
+    itemsadder: "growops:plant_ghost_train_haze_stage_2"
+    material: FERN
+    name: "<green>Ghost Train Haze Young Plant"
+    base: plant_stage_2
+  plant_ghost_train_haze_stage_3:
+    itemsadder: "growops:plant_ghost_train_haze_stage_3"
+    material: LARGE_FERN
+    name: "<green>Ghost Train Haze Growing Plant"
+    base: plant_stage_3
+  plant_ghost_train_haze_stage_4:
+    itemsadder: "growops:plant_ghost_train_haze_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Ghost Train Haze Flowering Plant"
+    base: plant_stage_4
+  seed_pineapple_express:
+    itemsadder: "growops:seed_pineapple_express"
+    material: WHEAT_SEEDS
+    name: "<white>Pineapple Express Seeds"
+    lore:
+      - "<gray>Plant in a grow pot."
+  bud_pineapple_express:
+    itemsadder: "growops:bud_pineapple_express"
+    material: GREEN_DYE
+    name: "<green>Bud"
+    base: bud
+  weed_bag_pineapple_express:
+    itemsadder: "growops:weed_bag_pineapple_express"
+    material: SUGAR
+    name: "<green>Bagged Weed"
+    base: weed_bag
+  ground_pineapple_express:
+    itemsadder: "growops:ground_pineapple_express"
+    material: LIME_DYE
+    name: "<dark_green>Ground Weed"
+    base: ground
+  joint_pineapple_express:
+    itemsadder: "growops:joint_pineapple_express"
+    material: STICK
+    name: "<green>Joint"
+    base: joint
+  brick_pineapple_express:
+    itemsadder: "growops:brick_pineapple_express"
+    material: MOSS_BLOCK
+    name: "<dark_green>Weed Brick"
+    base: brick
+  plant_pineapple_express_stage_0:
+    itemsadder: "growops:plant_pineapple_express_stage_0"
+    material: WHEAT_SEEDS
+    name: "<green>Pineapple Express Seedling"
+    base: plant_stage_0
+  plant_pineapple_express_stage_1:
+    itemsadder: "growops:plant_pineapple_express_stage_1"
+    material: SHORT_GRASS
+    name: "<green>Pineapple Express Sprout"
+    base: plant_stage_1
+  plant_pineapple_express_stage_2:
+    itemsadder: "growops:plant_pineapple_express_stage_2"
+    material: FERN
+    name: "<green>Pineapple Express Young Plant"
+    base: plant_stage_2
+  plant_pineapple_express_stage_3:
+    itemsadder: "growops:plant_pineapple_express_stage_3"
+    material: LARGE_FERN
+    name: "<green>Pineapple Express Growing Plant"
+    base: plant_stage_3
+  plant_pineapple_express_stage_4:
+    itemsadder: "growops:plant_pineapple_express_stage_4"
+    material: SWEET_BERRY_BUSH
+    name: "<green>Pineapple Express Flowering Plant"
+    base: plant_stage_4

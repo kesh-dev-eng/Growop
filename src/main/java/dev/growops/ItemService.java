@@ -26,7 +26,7 @@ import java.util.Set;
  */
 public final class ItemService {
 
-    public record ItemDef(String key, String itemsAdder, Material material, String name, List<String> lore) {
+    public record ItemDef(String key, String itemsAdder, Material material, String name, List<String> lore, String base) {
     }
 
     private final GrowOpsPlugin plugin;
@@ -83,26 +83,33 @@ public final class ItemService {
                 if (m == null) {
                     m = Material.PAPER;
                 }
-                defs.put(key, new ItemDef(key, s.getString("itemsadder", ""), m, s.getString("name", key), s.getStringList("lore")));
+                defs.put(key, new ItemDef(key, s.getString("itemsadder", ""), m, s.getString("name", key), s.getStringList("lore"), s.getString("base")));
             }
         }
         // every strain needs a seed item
         for (Strain st : plugin.strains().all()) {
             String key = "seed_" + st.id();
             if (!defs.containsKey(key)) {
-                defs.put(key, new ItemDef(key, "growops:" + key, Material.WHEAT_SEEDS, "<white>" + st.name() + " Seeds", List.of("<gray>Plant in a grow pot.")));
+                defs.put(key, new ItemDef(key, "growops:" + key, Material.WHEAT_SEEDS, "<white>" + st.name() + " Seeds", List.of("<gray>Plant in a grow pot."), null));
             }
         }
         for (ItemDef d : defs.values()) {
             if (d.itemsAdder() != null && !d.itemsAdder().isBlank()) {
-                iaReverse.put(d.itemsAdder(), d.key());
+                iaReverse.put(d.itemsAdder(), d.base() != null ? d.base() : d.key());
             }
         }
         plugin.getLogger().info("Loaded " + defs.size() + " items (ItemsAdder " + (iaPresent ? "hooked" : "not present, using vanilla fallbacks") + ").");
     }
 
+    /** Item keys an admin can give (per-strain visual variants are hidden). */
     public Set<String> keys() {
-        return defs.keySet();
+        Set<String> out = new java.util.TreeSet<>();
+        for (ItemDef d : defs.values()) {
+            if (d.base() == null) {
+                out.add(d.key());
+            }
+        }
+        return out;
     }
 
     public boolean exists(String key) {
@@ -110,7 +117,12 @@ public final class ItemService {
     }
 
     public ItemStack create(String key, int amount) {
-        ItemDef d = defs.get(key);
+        return build(key, key, amount);
+    }
+
+    /** visualKey picks the model/name, logicalKey is what the plugin treats the item as. */
+    private ItemStack build(String visualKey, String logicalKey, int amount) {
+        ItemDef d = defs.get(visualKey);
         if (d == null) {
             return null;
         }
@@ -142,9 +154,9 @@ public final class ItemService {
         }
         it.setAmount(Math.max(1, amount));
         ItemMeta m = it.getItemMeta();
-        m.getPersistentDataContainer().set(keyItem, PersistentDataType.STRING, key);
+        m.getPersistentDataContainer().set(keyItem, PersistentDataType.STRING, logicalKey);
         it.setItemMeta(m);
-        if (key.equals("watering_can")) {
+        if (logicalKey.equals("watering_can")) {
             setWater(it, plugin.getConfig().getInt("watering-can.capacity", 10));
         }
         return it;
@@ -179,7 +191,8 @@ public final class ItemService {
 
     /** Product item (bud, bag, ground, joint, brick) that remembers strain and quality. */
     public ItemStack product(String key, int amount, String strain, int quality) {
-        ItemStack it = create(key, amount);
+        String visual = defs.containsKey(key + "_" + strain) ? key + "_" + strain : key;
+        ItemStack it = build(visual, key, amount);
         if (it == null) {
             return null;
         }

@@ -16,6 +16,7 @@ public final class GrowOpsPlugin extends JavaPlugin {
     private Processing processing;
     private OpManager ops;
     private Hud hud;
+    private Smoking smoking;
 
     @Override
     public void onEnable() {
@@ -33,6 +34,7 @@ public final class GrowOpsPlugin extends JavaPlugin {
         processing = new Processing(this);
         ops = new OpManager(this);
         hud = new Hud(this);
+        smoking = new Smoking(this);
 
         // ItemsAdder loads its items a bit after the server starts, so everything that needs
         // item definitions waits for that when ItemsAdder is installed.
@@ -118,4 +120,5 @@ public final class GrowOpsPlugin extends JavaPlugin {
     public Processing processing() { return processing; }
     public OpManager ops() { return ops; }
     public Hud hud() { return hud; }
+    public Smoking smoking() { return smoking; }
 }

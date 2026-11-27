@@ -68,6 +68,13 @@ public final class StationListener implements Listener {
         ItemStack hand = p.getInventory().getItemInMainHand();
         String key = plugin.items().idOf(hand);
 
+        // light up a joint
+        if ("joint".equals(key)) {
+            e.setCancelled(true);
+            plugin.smoking().light(p, hand);
+            return;
+        }
+
         // refill the watering can from a water source
         if ("watering_can".equals(key)) {
             Block target = p.getTargetBlockExact(5, FluidCollisionMode.ALWAYS);
