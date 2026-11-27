@@ -69,7 +69,7 @@ public final class StationListener implements Listener {
         String key = plugin.items().idOf(hand);
 
         // light up a joint
-        if ("joint".equals(key)) {
+        if ("joint".equals(key) || "joint_lit".equals(key)) {
             e.setCancelled(true);
             plugin.smoking().light(p, hand);
             return;

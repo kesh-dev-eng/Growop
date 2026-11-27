@@ -39,6 +39,14 @@ public final class Smoking {
     public void light(Player p, ItemStack joint) {
         FileConfiguration cfg = plugin.getConfig();
         UUID id = p.getUniqueId();
+        if ("joint_lit".equals(plugin.items().idOf(joint)) && !smoking.contains(id)) {
+            String sid = plugin.items().strainOf(joint);
+            ItemStack out = sid == null ? plugin.items().create("joint", 1)
+                    : plugin.items().product("joint", 1, sid, plugin.items().qualityOf(joint));
+            p.getInventory().setItemInMainHand(out);
+            Util.bar(p, "<gray>You put it out.");
+            return;
+        }
         if (smoking.contains(id)) {
             return;
         }
@@ -52,20 +60,34 @@ public final class Smoking {
             Util.bar(p, "<red>You need a lighter to light this.");
             return;
         }
-        String strainId = plugin.items().strainOf(joint);
-        Strain strain = plugin.strains().get(strainId);
-        if (strain == null) {
-            Util.bar(p, "<gray>It's just a plain roll, nothing happens.");
-            return;
-        }
+        Strain strain = plugin.strains().get(plugin.items().strainOf(joint));
         int quality = plugin.items().qualityOf(joint);
-        Util.consumeMainHand(p, 1);
+        if (strain == null) {
+            java.util.List<Strain> all = new java.util.ArrayList<>(plugin.strains().all());
+            if (all.isEmpty()) {
+                return;
+            }
+            strain = all.get(new java.util.Random().nextInt(all.size()));
+        }
+        final Strain fStrain = strain;
+        final int slot = p.getInventory().getHeldItemSlot();
+        ItemStack litItem = plugin.items().product("joint_lit", 1, strain.id(), quality);
+        if (litItem != null) {
+            ItemStack rest = joint.clone();
+            rest.setAmount(joint.getAmount() - 1);
+            p.getInventory().setItem(slot, litItem);
+            if (rest.getAmount() > 0) {
+                Util.give(p, rest);
+            }
+        } else {
+            Util.consumeMainHand(p, 1);
+        }
         smoking.add(id);
 
         Location eye = p.getEyeLocation();
         p.getWorld().playSound(eye, Sound.ITEM_FLINTANDSTEEL_USE, 0.7f, 1.6f);
         p.getWorld().spawnParticle(Particle.FLAME, eye.clone().add(eye.getDirection().multiply(0.5)).add(0, -0.15, 0), 4, 0.03, 0.03, 0.03, 0.0);
-        Util.bar(p, "<gold>You light up some <white>" + strain.name() + "<gold>...");
+        Util.bar(p, "<gold>You light up some <white>" + fStrain.name() + "<gold>...");
 
         int puffs = Math.max(2, cfg.getInt("joint.puffs", 5));
         new BukkitRunnable() {
@@ -74,6 +96,9 @@ public final class Smoking {
             @Override
             public void run() {
                 if (!p.isOnline() || p.isDead()) {
+                    if (p.isOnline()) {
+                        removeLit(p, slot);
+                    }
                     smoking.remove(id);
                     cancel();
                     return;
@@ -93,12 +118,28 @@ public final class Smoking {
                 p.getWorld().playSound(e, Sound.ENTITY_PLAYER_BREATH, 0.8f, 0.8f);
                 p.getWorld().spawnParticle(Particle.CAMPFIRE_COSY_SMOKE, mouth, 12, 0.12, 0.08, 0.12, 0.02);
                 p.getWorld().spawnParticle(Particle.CLOUD, mouth, 10, 0.15, 0.1, 0.15, 0.01);
-                apply(p, strain, quality);
+                removeLit(p, slot);
+                apply(p, fStrain, quality);
                 smoking.remove(id);
                 cooldown.put(id, System.currentTimeMillis() + cfg.getLong("joint.cooldown-seconds", 20) * 1000L);
                 cancel();
             }
         }.runTaskTimer(plugin, 12L, 12L);
+    }
+
+    private void removeLit(Player p, int slot) {
+        ItemStack cur = p.getInventory().getItem(slot);
+        if (cur != null && plugin.items().is(cur, "joint_lit")) {
+            p.getInventory().setItem(slot, null);
+            return;
+        }
+        ItemStack[] arr = p.getInventory().getStorageContents();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != null && plugin.items().is(arr[i], "joint_lit")) {
+                p.getInventory().setItem(i, null);
+                return;
+            }
+        }
     }
 
     private boolean hasLighter(Player p) {

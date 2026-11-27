@@ -32,6 +32,7 @@ public final class ItemService {
     private final GrowOpsPlugin plugin;
     private final Map<String, ItemDef> defs = new LinkedHashMap<>();
     private final Map<String, String> iaReverse = new HashMap<>();
+    private final Map<String, String> iaKey = new HashMap<>();
 
     private NamespacedKey keyItem;
     private NamespacedKey keyStrain;
@@ -70,6 +71,7 @@ public final class ItemService {
 
         defs.clear();
         iaReverse.clear();
+        iaKey.clear();
         File f = new File(plugin.getDataFolder(), "items.yml");
         YamlConfiguration y = YamlConfiguration.loadConfiguration(f);
         ConfigurationSection root = y.getConfigurationSection("items");
@@ -96,6 +98,7 @@ public final class ItemService {
         for (ItemDef d : defs.values()) {
             if (d.itemsAdder() != null && !d.itemsAdder().isBlank()) {
                 iaReverse.put(d.itemsAdder(), d.base() != null ? d.base() : d.key());
+                iaKey.put(d.itemsAdder(), d.key());
             }
         }
         plugin.getLogger().info("Loaded " + defs.size() + " items (ItemsAdder " + (iaPresent ? "hooked" : "not present, using vanilla fallbacks") + ").");
@@ -202,6 +205,10 @@ public final class ItemService {
         pdc.set(keyQuality, PersistentDataType.INTEGER, quality);
         Strain s = plugin.strains().get(strain);
         String sn = s == null ? strain : s.name();
+        ItemDef def = defs.get(key);
+        String label = def == null ? key : def.name().replaceAll("<[^>]+>", "");
+        String hex = s == null ? "FFFFFF" : String.format("%02X%02X%02X", s.color().getRed(), s.color().getGreen(), s.color().getBlue());
+        m.displayName(Text.c("<#" + hex + ">" + sn + " " + label));
         List<Component> lore = new ArrayList<>();
         if (m.lore() != null) {
             lore.addAll(m.lore());
@@ -221,7 +228,28 @@ public final class ItemService {
         if (it == null || !it.hasItemMeta()) {
             return null;
         }
-        return it.getItemMeta().getPersistentDataContainer().get(keyStrain, PersistentDataType.STRING);
+        String s = it.getItemMeta().getPersistentDataContainer().get(keyStrain, PersistentDataType.STRING);
+        if (s != null) {
+            return s;
+        }
+        // items taken straight from ItemsAdder (e.g. /iaget growops:joint_og_kush) carry the strain in their id
+        if (iaPresent) {
+            try {
+                Object cs = iaByItemStack.invoke(null, it);
+                if (cs != null) {
+                    String defKey = iaKey.get((String) iaGetId.invoke(cs));
+                    if (defKey != null) {
+                        for (Strain st : plugin.strains().all()) {
+                            if (defKey.endsWith("_" + st.id())) {
+                                return st.id();
+                            }
+                        }
+                    }
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return null;
     }
 
     public int qualityOf(ItemStack it) {

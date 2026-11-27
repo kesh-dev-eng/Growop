@@ -105,6 +105,10 @@ items:
     itemsadder: "growops:joint"
     material: STICK
     name: "<green>Joint"
+  joint_lit:
+    itemsadder: "growops:joint_lit"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
   brick:
     itemsadder: "growops:brick"
     material: MOSS_BLOCK
@@ -155,6 +159,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_blue_dream:
+    itemsadder: "growops:joint_lit_blue_dream"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_blue_dream:
     itemsadder: "growops:brick_blue_dream"
     material: MOSS_BLOCK
@@ -211,6 +220,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_bubba_kush:
+    itemsadder: "growops:joint_lit_bubba_kush"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_bubba_kush:
     itemsadder: "growops:brick_bubba_kush"
     material: MOSS_BLOCK
@@ -267,6 +281,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_super_lemon_haze:
+    itemsadder: "growops:joint_lit_super_lemon_haze"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_super_lemon_haze:
     itemsadder: "growops:brick_super_lemon_haze"
     material: MOSS_BLOCK
@@ -323,6 +342,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_azure_haze:
+    itemsadder: "growops:joint_lit_azure_haze"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_azure_haze:
     itemsadder: "growops:brick_azure_haze"
     material: MOSS_BLOCK
@@ -379,6 +403,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_whitethorn_rose:
+    itemsadder: "growops:joint_lit_whitethorn_rose"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_whitethorn_rose:
     itemsadder: "growops:brick_whitethorn_rose"
     material: MOSS_BLOCK
@@ -435,6 +464,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_og_kush:
+    itemsadder: "growops:joint_lit_og_kush"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_og_kush:
     itemsadder: "growops:brick_og_kush"
     material: MOSS_BLOCK
@@ -491,6 +525,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_panama_red:
+    itemsadder: "growops:joint_lit_panama_red"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_panama_red:
     itemsadder: "growops:brick_panama_red"
     material: MOSS_BLOCK
@@ -547,6 +586,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_purple_haze:
+    itemsadder: "growops:joint_lit_purple_haze"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_purple_haze:
     itemsadder: "growops:brick_purple_haze"
     material: MOSS_BLOCK
@@ -603,6 +647,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_ghost_train_haze:
+    itemsadder: "growops:joint_lit_ghost_train_haze"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_ghost_train_haze:
     itemsadder: "growops:brick_ghost_train_haze"
     material: MOSS_BLOCK
@@ -659,6 +708,11 @@ items:
     material: STICK
     name: "<green>Joint"
     base: joint
+  joint_lit_pineapple_express:
+    itemsadder: "growops:joint_lit_pineapple_express"
+    material: BLAZE_ROD
+    name: "<gold>Lit Joint"
+    base: joint_lit
   brick_pineapple_express:
     itemsadder: "growops:brick_pineapple_express"
     material: MOSS_BLOCK

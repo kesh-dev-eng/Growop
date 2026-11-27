@@ -303,7 +303,7 @@ def img_weed_bag(color, seed):
     return finish(img)
 
 
-def img_joint(color, lit_hint=False):
+def img_joint(color, lit=False):
     img = new()
     d = ImageDraw.Draw(img, "RGBA")
     a = math.radians(-38)
@@ -322,8 +322,21 @@ def img_joint(color, lit_hint=False):
     for t in (60, 95, 130, 160):
         d.line((*tr(t, -7 - t * 0.02), *tr(t + 4, 5)), fill=(210, 210, 205, 200), width=2)
     # tip twist
-    d.polygon([tr(L, -13), tr(L + 22, -3), tr(L + 22, 3), tr(L, 13)], fill=shade(paper, 0.92) + (255,))
-    d.line((*tr(L + 4, -12), *tr(L + 20, 0)), fill=(200, 200, 195, 255), width=2)
+    if lit:
+        d.polygon([tr(L - 4, -13), tr(L + 10, -12), tr(L + 10, 12), tr(L - 4, 13)], fill=(95, 92, 90, 255))
+        d.polygon([tr(L + 8, -12), tr(L + 18, -8), tr(L + 18, 8), tr(L + 8, 12)], fill=(210, 60, 20, 255))
+        ex, ey = tr(L + 16, 0)
+        d.ellipse((ex - 9, ey - 9, ex + 9, ey + 9), fill=(255, 150, 40, 255))
+        d.ellipse((ex - 4, ey - 4, ex + 4, ey + 4), fill=(255, 235, 150, 255))
+
+        def smoke(f):
+            for i in range(6):
+                f.ellipse((ex + 6 + i * 3 - 7 - i, ey - 24 - i * 14 - 7 - i, ex + 6 + i * 3 + 7 + i, ey - 24 - i * 14 + 7 + i),
+                          fill=(215, 215, 220, 130 - i * 18))
+        overlay(img, smoke)
+    else:
+        d.polygon([tr(L, -13), tr(L + 22, -3), tr(L + 22, 3), tr(L, 13)], fill=shade(paper, 0.92) + (255,))
+        d.line((*tr(L + 4, -12), *tr(L + 20, 0)), fill=(200, 200, 195, 255), width=2)
     return finish(img)
 
 
@@ -532,6 +545,7 @@ PRODUCTS = [
     ("weed_bag", "<green>Bagged Weed", "SUGAR", img_weed_bag),
     ("ground", "<dark_green>Ground Weed", "LIME_DYE", img_ground),
     ("joint", "<green>Joint", "STICK", lambda c, s: img_joint(c)),
+    ("joint_lit", "<gold>Lit Joint", "BLAZE_ROD", lambda c, s: img_joint(c, True)),
     ("brick", "<dark_green>Weed Brick", "MOSS_BLOCK", img_brick),
 ]
 STAGE_NAMES = ["Seedling", "Sprout", "Young Plant", "Growing Plant", "Flowering Plant"]

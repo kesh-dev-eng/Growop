@@ -34,7 +34,7 @@ Edit effects in `strains.yml` (`effects: ["SPEED:2", "NIGHT_VISION"]`), timings 
 
 ## Lighting a joint
 Hold a Joint and right-click. You need a **Lighter** (`/growops give lighter`) or vanilla flint and steel in your inventory.
-After a short smoking animation you get the strain's effects. Higher quality = longer effects.
+The joint changes to a lit joint in your hand while you smoke, then you get the strain's effects. Right-click a lit joint again to put it out. Higher quality = longer effects.
 Levitation is capped at 6 s and followed by Slow Falling so nobody falls to their death.
 
 ## Updating from the first version
