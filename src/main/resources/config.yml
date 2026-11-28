@@ -10,7 +10,10 @@ growth:
   stages: 5
 
 plant:
-  scales: [0.25, 0.4, 0.6, 0.8, 1.0]
+  # Plant height in blocks for each growth stage. The last one is the flowering plant: 3 blocks tall.
+  scales: [0.6, 1.2, 1.9, 2.5, 3.0]
+  # Width of the plant model compared to its height.
+  width-ratio: 0.7
   dehydrate-damage-per-minute: 4
   regen-per-minute: 2
 
@@ -99,6 +102,9 @@ joint:
     SATURATION: 3
     NAUSEA: 20
     HEALTH_BOOST: 120
+
+joint-box:
+  capacity: 64   # joints one box can hold
 
 hud:
   default-enabled: false

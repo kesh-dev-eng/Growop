@@ -17,6 +17,7 @@ public final class GrowOpsPlugin extends JavaPlugin {
     private OpManager ops;
     private Hud hud;
     private Smoking smoking;
+    private JointBox jointBox;
 
     @Override
     public void onEnable() {
@@ -35,6 +36,7 @@ public final class GrowOpsPlugin extends JavaPlugin {
         ops = new OpManager(this);
         hud = new Hud(this);
         smoking = new Smoking(this);
+        jointBox = new JointBox(this);
 
         // ItemsAdder loads its items a bit after the server starts, so everything that needs
         // item definitions waits for that when ItemsAdder is installed.
@@ -49,6 +51,7 @@ public final class GrowOpsPlugin extends JavaPlugin {
         pm.registerEvents(minigames, this);
         pm.registerEvents(processing, this);
         pm.registerEvents(hud, this);
+        pm.registerEvents(jointBox, this);
         pm.registerEvents(new LockupListener(this), this);
 
         GrowOpsCommand cmd = new GrowOpsCommand(this);
@@ -121,4 +124,5 @@ public final class GrowOpsPlugin extends JavaPlugin {
     public OpManager ops() { return ops; }
     public Hud hud() { return hud; }
     public Smoking smoking() { return smoking; }
+    public JointBox jointBox() { return jointBox; }
 }

@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.Display;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Interaction;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Transformation;
@@ -26,6 +27,7 @@ import java.util.UUID;
 public final class DisplayService {
     private final GrowOpsPlugin plugin;
     private final Map<UUID, Entity[]> displays = new HashMap<>();
+    private final Map<UUID, Station> hitboxes = new HashMap<>();
 
     public DisplayService(GrowOpsPlugin plugin) {
         this.plugin = plugin;
@@ -78,7 +80,7 @@ public final class DisplayService {
         Entity[] e = displays.get(st.id);
         if (e == null || !valid(e)) {
             remove(st);
-            e = new Entity[3];
+            e = new Entity[4];
             displays.put(st.id, e);
         }
 
@@ -117,12 +119,13 @@ public final class DisplayService {
             scale = 0.6;
         }
         float s = (float) scale;
+        float ratio = (float) plugin.getConfig().getDouble("plant.width-ratio", 0.7);
         for (int i = 0; i < 2; i++) {
             final ItemStack fs = stack;
             Transformation t = new Transformation(
                     new Vector3f(0f, s / 2f, 0f),
                     new AxisAngle4f((float) Math.toRadians(i * 90 + 45), 0f, 1f, 0f),
-                    new Vector3f(s, s, s),
+                    new Vector3f(s * ratio, s, s),
                     new AxisAngle4f());
             Entity cur = e[1 + i];
             if (cur instanceof ItemDisplay id && cur.isValid()) {
@@ -140,6 +143,27 @@ public final class DisplayService {
                 });
             }
         }
+        float hw = (float) Math.max(0.6, scale * ratio * 0.5);
+        float hh = (float) Math.max(0.6, scale);
+        if (e[3] instanceof Interaction ia && e[3].isValid()) {
+            ia.setInteractionWidth(hw);
+            ia.setInteractionHeight(hh);
+        } else {
+            Location base = loc.clone().add(0.5, 0.3, 0.5);
+            Entity spawned = w.spawn(base, Interaction.class, d -> {
+                d.setPersistent(false);
+                d.setInteractionWidth(hw);
+                d.setInteractionHeight(hh);
+                d.setResponsive(true);
+            });
+            e[3] = spawned;
+            hitboxes.put(spawned.getUniqueId(), st);
+        }
+    }
+
+    /** The pot a hitbox entity belongs to, or null. */
+    public Station stationOf(Entity entity) {
+        return hitboxes.get(entity.getUniqueId());
     }
 
     private Material soilMaterial(Plant p) {
@@ -169,6 +193,9 @@ public final class DisplayService {
         if (e == null) {
             return;
         }
+        if (e.length > 3 && e[3] != null) {
+            hitboxes.remove(e[3].getUniqueId());
+        }
         for (Entity en : e) {
             if (en != null && en.isValid()) {
                 en.remove();
@@ -185,5 +212,6 @@ public final class DisplayService {
             }
         }
         displays.clear();
+        hitboxes.clear();
     }
 }

@@ -75,6 +75,14 @@ items:
     itemsadder: "growops:rolling_paper"
     material: PAPER
     name: "<white>Rolling Paper"
+  joint_box:
+    itemsadder: "growops:joint_box"
+    material: CHEST
+    name: "<gold>Joint Box"
+    lore:
+      - "<gray>Holds up to 64 joints."
+      - "<gray>Right-click to open."
+      - "<gray>Sneak + right-click to take one out."
   lighter:
     itemsadder: "growops:lighter"
     material: FLINT

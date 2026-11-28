@@ -12,6 +12,7 @@ import math
 import os
 import random
 
+import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,6 +78,51 @@ def finish(img):
     return base.resize((OUT, OUT), Image.LANCZOS)
 
 
+K = 4          # supersample factor for the hi-res plant textures
+OUT_HI = 256   # plant texture size
+JR = random.Random(11)
+
+
+class Scaled:
+    """Draws with the 256-space coordinates onto a K times larger canvas."""
+
+    def __init__(self, img, k):
+        self.d = ImageDraw.Draw(img)
+        self.k = k
+
+    def _pts(self, pts):
+        return [(x * self.k, y * self.k) for x, y in pts]
+
+    def ellipse(self, box, fill=None, outline=None, width=1):
+        self.d.ellipse([v * self.k for v in box], fill=fill, outline=outline, width=max(1, int(width * self.k)))
+
+    def polygon(self, pts, fill=None):
+        self.d.polygon(self._pts(pts), fill=fill)
+
+    def line(self, xy, fill=None, width=1):
+        self.d.line([v * self.k for v in xy], fill=fill, width=max(1, int(width * self.k)))
+
+    def rectangle(self, box, fill=None, outline=None, width=1):
+        self.d.rectangle([v * self.k for v in box], fill=fill, outline=outline, width=max(1, int(width * self.k)))
+
+
+def finish_hi(img, grain=7):
+    """Soft outline, leaf-surface grain, then downsample to the final plant texture size."""
+    a = img.split()[3]
+    ol = a.filter(ImageFilter.MaxFilter(5))
+    base = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    base.paste(Image.new("RGBA", img.size, (10, 20, 10, 190)), (0, 0), ol)
+    base.alpha_composite(img)
+    arr = np.array(base).astype(np.float32)
+    rng = np.random.default_rng(3)
+    raw = np.clip(rng.normal(128, 40, arr.shape[:2]), 0, 255).astype(np.uint8)
+    blurred = np.array(Image.fromarray(raw, "L").filter(ImageFilter.GaussianBlur(0.8))).astype(np.float32)
+    noise = (blurred - 128.0) / 40.0 * grain * 2.2
+    arr[..., :3] += noise[..., None]
+    out = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8), "RGBA")
+    return out.resize((OUT_HI, OUT_HI), Image.LANCZOS)
+
+
 def overlay(img, fn):
     """Draw translucent shapes on a separate layer so they blend instead of overwriting pixels."""
     layer = new()
@@ -139,9 +185,19 @@ def leaflet(d, bx, by, ang, length, width, dark, light):
     pts = left + right[::-1]
     a = math.radians(ang)
     ca, sa = math.cos(a), math.sin(a)
+    j = JR.uniform(0.88, 1.12)
+    dark, light = shade(dark, j), shade(light, j)
     rot = [(bx + x * ca - y * sa, by + x * sa + y * ca) for x, y in pts]
     shaded_poly(d, rot, dark, light)
-    d.line((bx, by, bx + length * 0.92 * ca, by + length * 0.92 * sa), fill=shade(light, 1.15) + (255,), width=2)
+    vein = shade(light, 1.12) + (255,)
+    for i in range(1, 9):
+        t = i / 9
+        vx, vy = bx + t * length * ca, by + t * length * sa
+        vl = width * math.sin(math.pi * (t ** 0.75)) * 0.8
+        for sg in (-1, 1):
+            va = a + sg * math.radians(52)
+            d.line((vx, vy, vx + vl * math.cos(va), vy + vl * math.sin(va)), fill=vein, width=1)
+    d.line((bx, by, bx + length * 0.92 * ca, by + length * 0.92 * sa), fill=shade(light, 1.2) + (255,), width=2)
 
 
 def fan_leaf(d, cx, cy, size, n, tilt, dark, light):
@@ -154,32 +210,35 @@ def fan_leaf(d, cx, cy, size, n, tilt, dark, light):
 
 
 def cola(d, cx, cy, h, color, rnd):
-    """Flowering top: stacked calyx blobs, orange pistils and frosty dots."""
-    dark, light = shade(color, 0.6), lerp(color, (255, 255, 255), 0.25)
-    n = max(4, int(h / 14))
+    """Flowering top: many small calyx clusters, thin orange pistils and fine frost."""
+    dark, light = shade(color, 0.5), lerp(color, (255, 255, 255), 0.3)
+    n = max(5, int(h / 8))
     for i in range(n):
         t = i / (n - 1)
-        r = 15 * (1 - 0.55 * t) + 5
+        r = 13 * (1 - 0.6 * t) + 4
         y = cy - h * t
-        for dx in (-r * 0.6, r * 0.6, 0):
-            blob(d, cx + dx + rnd.uniform(-2, 2), y + rnd.uniform(-2, 2), r * 0.8, r * 0.9, dark, light, 6)
-    for _ in range(int(h * 0.7)):
-        x = cx + rnd.uniform(-16, 16)
+        for dx in (-1.0, -0.5, 0.0, 0.5, 1.0):
+            jitter = rnd.uniform(-2.5, 2.5)
+            c1 = lerp(dark, color, rnd.uniform(0.0, 0.6))
+            blob(d, cx + dx * r * 0.9 + jitter, y + rnd.uniform(-3, 3), r * 0.55, r * 0.65, c1, light, 5)
+    for _ in range(int(h * 1.3)):
+        x = cx + rnd.uniform(-15, 15) * (1 - 0.0)
         y = cy - rnd.uniform(0, h)
         a = rnd.uniform(0, 6.28)
-        d.line((x, y, x + math.cos(a) * 9, y + math.sin(a) * 9), fill=(235, 130, 40, 255), width=2)
-    for _ in range(int(h * 0.8)):
-        x = cx + rnd.uniform(-16, 16)
+        ln = rnd.uniform(4, 8)
+        d.line((x, y, x + math.cos(a) * ln, y + math.sin(a) * ln), fill=(rnd.randint(215, 245), rnd.randint(110, 150), rnd.randint(30, 60), 255), width=1)
+    for _ in range(int(h * 1.6)):
+        x = cx + rnd.uniform(-15, 15)
         y = cy - rnd.uniform(0, h)
-        d.ellipse((x - 1.5, y - 1.5, x + 1.5, y + 1.5), fill=(255, 255, 255, 230))
+        d.ellipse((x - 0.9, y - 0.9, x + 0.9, y + 0.9), fill=(255, 255, 255, 210))
 
 
 # ---------------------------------------------------------------- plant stages
 
 
 def plant(stage, color, dead=False):
-    img = new()
-    d = ImageDraw.Draw(img)
+    img = Image.new("RGBA", (S * K, S * K), (0, 0, 0, 0))
+    d = Scaled(img, K)
     rnd = random.Random(color[0] * 7 + color[1] * 3 + color[2] + stage)
     leaf_c = lerp(GREEN, color, 0.30)
     if dead:
@@ -192,16 +251,21 @@ def plant(stage, color, dead=False):
         heights = [150]
     h = heights[0 if dead else stage]
     x = 128
-    d.line((x, base_y, x, base_y - h), fill=stem + (255,), width=6 if stage > 0 or dead else 4)
+    sw = 4.5 if stage > 0 or dead else 3
+    shaded_poly(d, [(x - sw, base_y), (x + sw, base_y), (x + sw * 0.45, base_y - h), (x - sw * 0.45, base_y - h)],
+                shade(stem, 0.7), shade(stem, 1.25), 5)
+    for k in range(1, 5 if stage > 1 else 1):
+        ny = base_y - h * k / 5
+        d.ellipse((x - sw * 0.9, ny - 2, x + sw * 0.9, ny + 2), fill=shade(stem, 0.6) + (255,))
     if dead:
         for i, ang in enumerate((-150, -30, -120, -60)):
             leaflet(d, x, base_y - 60 - i * 22, ang + 90 * (i % 2) - 90 * 0, 46, 8, dark, light)
-        return finish(img)
+        return finish_hi(img)
     if stage == 0:
         for sx in (-1, 1):
             blob(d, x + sx * 20, base_y - h, 22, 11, dark, light)
         leaflet(d, x, base_y - h, -90, 26, 6, dark, light)
-        return finish(img)
+        return finish_hi(img)
     tiers = [(0.35, 54, 3), (0.55, 64, 5), (0.75, 74, 5), (0.92, 80, 7)]
     count = {1: 1, 2: 2, 3: 3, 4: 4}[stage]
     scale = {1: 0.55, 2: 0.8, 3: 1.0, 4: 1.0}[stage]
@@ -220,7 +284,7 @@ def plant(stage, color, dead=False):
                 ox = x + side * 14
                 oy = base_y - h * fy
                 cola(d, ox, oy, 22, color, rnd)
-    return finish(img)
+    return finish_hi(img)
 
 
 # ---------------------------------------------------------------- products
@@ -372,6 +436,27 @@ def img_rolling_paper():
     for yy in range(108, 142, 8):
         d.line((88, yy, 168, yy), fill=(150, 150, 150, 255), width=3)
     d.polygon([(186, 70), (206, 82), (206, 190), (186, 196)], fill=(215, 210, 195, 255))
+    return finish(img)
+
+
+def img_joint_box():
+    img = new()
+    d = ImageDraw.Draw(img)
+    # joints poking out of the open box
+    for i, (x, ang) in enumerate(((98, -14), (122, -4), (146, 6), (170, 16))):
+        a = math.radians(ang - 90)
+        x0, y0 = x, 118
+        x1, y1 = x0 + math.cos(a) * 60, y0 + math.sin(a) * 60
+        d.line((x0, y0, x1, y1), fill=(240, 238, 228, 255), width=11)
+        d.line((x0 - 3, y0 - 2, x1 - 3, y1 - 2), fill=(255, 255, 250, 255), width=3)
+        d.ellipse((x1 - 6, y1 - 6, x1 + 6, y1 + 6), fill=(225, 222, 210, 255))
+    paste_rrect(img, (44, 112, 212, 222), 10, (24, 70, 44), (52, 130, 84))
+    d.rectangle((44, 112, 212, 126), fill=(18, 52, 34, 255))
+    d.rectangle((44, 124, 212, 128), fill=(214, 176, 70, 255))
+    d.rectangle((44, 206, 212, 210), fill=(214, 176, 70, 255))
+    d.rounded_rectangle((100, 146, 156, 190), 8, outline=(214, 176, 70, 255), width=4)
+    fan_leaf(d, 128, 186, 22, 5, 0, (214, 176, 70), (240, 210, 110))
+    d.ellipse((120, 128, 136, 144), fill=(214, 176, 70, 255))
     return finish(img)
 
 
@@ -535,6 +620,7 @@ BASE_ITEMS = [
     ("fertilizer_resist", "<green>Resist Fertilizer", "BONE_MEAL", ["<gray>Apply early. Fewer pests."], lambda: img_fert((70, 170, 80), "resist")),
     ("pesticide", "<red>Pesticide Spray", "POTION", ["<gray>Cures an infestation."], lambda: img_pesticide()),
     ("rolling_paper", "<white>Rolling Paper", "PAPER", [], lambda: img_rolling_paper()),
+    ("joint_box", "<gold>Joint Box", "CHEST", ["<gray>Holds up to 64 joints.", "<gray>Right-click to open.", "<gray>Sneak + right-click to take one out."], lambda: img_joint_box()),
     ("lighter", "<red>Lighter", "FLINT", ["<gray>Needed to light a joint."], lambda: img_lighter()),
     ("bag_empty", "<white>Empty Bag", "PAPER", [], lambda: img_bag_empty()),
     ("plant_dead", "<dark_gray>Withered Plant", "DEAD_BUSH", [], lambda: plant(0, GREEN, dead=True)),

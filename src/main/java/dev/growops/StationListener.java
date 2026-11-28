@@ -21,7 +21,9 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.entity.Interaction;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -67,6 +69,13 @@ public final class StationListener implements Listener {
         Player p = e.getPlayer();
         ItemStack hand = p.getInventory().getItemInMainHand();
         String key = plugin.items().idOf(hand);
+
+        // portable joint box
+        if ("joint_box".equals(key)) {
+            e.setCancelled(true);
+            plugin.jointBox().use(p, hand);
+            return;
+        }
 
         // light up a joint
         if ("joint".equals(key) || "joint_lit".equals(key)) {
@@ -121,6 +130,26 @@ public final class StationListener implements Listener {
             e.setCancelled(true);
             place(p, b, e.getBlockFace(), hand, type);
         }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onInteractEntity(PlayerInteractEntityEvent e) {
+        if (e.getHand() != EquipmentSlot.HAND || !(e.getRightClicked() instanceof Interaction hit)) {
+            return;
+        }
+        Station st = plugin.displays().stationOf(hit);
+        if (st == null) {
+            return;
+        }
+        e.setCancelled(true);
+        Player p = e.getPlayer();
+        ItemStack hand = p.getInventory().getItemInMainHand();
+        String key = plugin.items().idOf(hand);
+        if ("joint".equals(key) || "joint_lit".equals(key)) {
+            plugin.smoking().light(p, hand);
+            return;
+        }
+        useStation(p, st, hand, key);
     }
 
     private void useStation(Player p, Station st, ItemStack hand, String key) {

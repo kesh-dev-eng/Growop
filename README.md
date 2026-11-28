@@ -37,6 +37,20 @@ Hold a Joint and right-click. You need a **Lighter** (`/growops give lighter`) o
 The joint changes to a lit joint in your hand while you smoke, then you get the strain's effects. Right-click a lit joint again to put it out. Higher quality = longer effects.
 Levitation is capped at 6 s and followed by Slow Falling so nobody falls to their death.
 
+## Giant plants
+Plants grow to 3 blocks tall (a flowering plant is taller than a player). Sizes per growth stage are `plant.scales` in `config.yml`,
+and `plant.width-ratio` sets how wide the model is. The plant textures are 256 px with leaf veins and surface grain.
+Right-click the plant itself (not only the pot) to water, fertilize, spray, harvest or smoke.
+
+## Joint Box
+`/growops give joint_box`. A portable box that holds up to 64 joints (`joint-box.capacity` in `config.yml`).
+- Right-click: open it and put joints in or take them out. Only joints are accepted.
+- Sneak + right-click: take one joint out without opening it.
+- The joints are stored inside the item, so the box can be carried, dropped, traded or put in a chest with its contents. Its lore shows the count per strain.
+
+## Updating from an earlier version
+Also delete `plugins/GrowOps/config.yml` (or copy the new `plant:` and `joint-box:` sections into it) so the 3-block plant sizes apply.
+
 ## Updating from the first version
 Delete `plugins/GrowOps/strains.yml` and `plugins/GrowOps/items.yml` so the new ones are created, and replace the ItemsAdder
 `growops` folder. Plants of the removed strain (White Widow) in `data.yml` show as unknown strain, clear them with sneak + click.

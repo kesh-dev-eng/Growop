@@ -85,6 +85,13 @@ items:
       generate: true
       textures:
         - item/rolling_paper.png
+  joint_box:
+    display_name: "Joint Box"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+        - item/joint_box.png
   lighter:
     display_name: "Lighter"
     resource:
